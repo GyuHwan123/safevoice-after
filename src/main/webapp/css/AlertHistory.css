@@ -1,0 +1,265 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+
+
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+  outline: -webkit-focus-ring-color auto 5px !important;
+}
+
+/* 전체 프레임 */
+.alert-frame {
+  position: relative;
+  width: 403px;
+  height: 874px;
+  background-color: #ffffff;
+  border-radius: 60px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+
+
+/* 푸터 내비게이션 */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    padding: 12px 0;
+   
+}
+
+.bottom-navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.bottom-navbar a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 12px;
+}
+
+.bottom-navbar img {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 4px;
+}
+
+.divider {
+  height: 1px;
+  background-color: #69b56c;
+}
+
+.tab-group {
+  display: flex;
+  justify-content: space-around;
+  padding: 6px 0;
+  background-color: #def8de;
+}
+
+.tab img {
+  width: 40px;
+  height: 40px;
+}
+
+/* 상단 헤더 */
+.alert-header {
+  display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: #c2f3aa;
+	padding: 16px;
+}
+
+.back-button img {
+  width: 24px;
+  height: 24px;
+  cursor:pointer;
+}
+
+.profile-icon {
+    margin-left:auto;
+}
+
+.profile-icon img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+}
+
+
+.alert-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin: 8px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.alert-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  color: #333;
+}
+
+.alert-type {
+  font-weight: bold;
+  color: #666;
+}
+
+.alert-icon {
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: white;
+}
+
+.icon-red {
+  background-color: #e74c3c;
+}
+
+.icon-orange {
+  background-color: #e67e22;
+}
+
+.icon-yellow {
+  background-color: #f1c40f;  /* 오렌지 느낌 */
+  color: white;
+}
+
+
+
+
+
+.page-title {
+ font-size: 18px;
+	font-weight: bold;
+	color: #333;
+}
+
+/* 알림 리스트 */
+.alert-list {
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.alert-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #fcfcfc;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.alert-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.alert-date,
+.alert-time {
+  font-size: 16px;
+  color: var(--system-colors-labels-primary);
+  font-family: var(--body-font-family);
+}
+
+.alert-type {
+  font-size: 14px;
+  color: var(--system-colors-labels-secondary);
+  font-family: var(--body-font-family);
+}
+
+/* 뱃지 공통 */
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+
+.badge-warning {
+  background-color: #f9a70c;
+}
+
+.badge-caution {
+  background-color: #f1dd01;
+}
+
+.badge-sos {
+  background-color: #ec221f;
+}	
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.menu-icon img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain; /* 필요 시 */
+}
+
+/* @media (min-width: 768px) {
+    .menu-icon {
+      display: flex;
+      align-items: center;
+    }
+  
+    footer {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .menu-icon{
+        display: none;
+    }
+    
+    .alerts-container {
+        margin-top: 20px;
+    }
+} */

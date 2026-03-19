@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+ 
+
+
+<configuration>
+	<settings>
+		<setting name = "mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+
+	<typeAliases>
+	<!-- member 관리를 위한 객체의 별칭은 membervo로 지정한다. -->
+	<!-- alert 관리를 위한 객체의 별칭은 alertvo로 지정한다.  -->
+		<typeAlias type="com.safevoice.model.MemberVO" alias="membervo"></typeAlias>
+		<typeAlias type="com.safevoice.model.AlertVO" alias="alertvo"></typeAlias>
+	</typeAliases>
+	
+	
+	
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <!-- mysql과 연결하기 위한 driver, url, username, password 작성 -->
+      <dataSource type="POOLED">
+        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/safevoice?serverTimezone=Asia/Seoul"/>
+        <property name="username" value="root"/>
+        <property name="password" value="ataraxia8312!"/>
+      </dataSource>
+    </environment>
+  </environments>
+  
+  <mappers>
+    <mapper resource="com/safevoice/db/MemberMapper.xml"/>
+    <mapper resource="com/safevoice/db/AlertMapper.xml"/>
+  </mappers>
+</configuration>
+
+	
+
+	

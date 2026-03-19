@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- SQL구문 작성하는 공간 -->
+
+<mapper namespace="com.safevoice.db.AlertDAO">
+	
+	 <select id="getAlertHistory" parameterType = "String" resultType = "alertvo">
+	 	SELECT A.MEMBER_ID, A.ALERT_TYPE, A.ALERT_TIME, A.LAT, A.LON, A.VIEW_OR_NOT, M.NAME
+		FROM ALERTS A LEFT JOIN MEMBERS M
+		ON A.MEMBER_ID = M.MEMBER_ID
+		WHERE A.MEMBER_ID = #{id}
+	 </select>
+	 
+	 <insert id="setAlertInfo" parameterType = "alertvo">
+	 	INSERT INTO ALERTS (MEMBER_ID, ALERT_TYPE, LAT, LON)
+	 	VALUES (#{memberId}, #{alertType}, #{lat}, #{lon})
+	 </insert>
+	 
+	 <select id="getSubscriptionJsonByUserId" parameterType="string" resultType="string">
+   	   SELECT json_subscription FROM members WHERE member_id = #{memberId}
+	 </select>
+	 
+	 <select id="findParentSubscriptions" parameterType="string" resultType="string">
+    	SELECT SUBSCRIPTION_JSON
+ 		FROM MEMBERS
+   		WHERE FAMILY_CD = (
+        SELECT FAMILY_CD FROM MEMBERS WHERE MEMBER_ID = #{childId}
+    	)
+    	AND MEM_TYPE = 'P'
+    	
+	</select>
+	
+	<!-- 알림을 확인할 시 읽음으로 데이터를 변경하는 SQL -->
+	 <update id="markAlertsAsRead" parameterType ="string">
+		UPDATE ALERTS
+		SET VIEW_OR_NOT = 1
+		WHERE MEMBER_ID = #{id}
+	</update>
+	 
+</mapper>
+

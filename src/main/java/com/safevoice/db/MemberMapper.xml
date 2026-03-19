@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- SQL구문 작성하는 공간 -->
+<mapper namespace="com.safevoice.db.MemberDAO">
+	
+	 <insert id="signIn" parameterType = "membervo">
+	 	INSERT INTO MEMBERS (MEMBER_ID, EMAIL, PW, NAME, BIRTHDATE, PHONE, POST_CODE, ADDRESS, DETAIL_ADDRESS, GENDER, MEM_TYPE )
+	 	VALUES(#{id},#{email},#{pw},#{name},#{birthDate},#{phone},#{postcode},#{address},#{detailAddress},#{gender},#{memType})
+	 </insert>
+	 
+	 <!-- 로그인 할 때 입력하는 정보 중 세션에 집어넣어야 할 정보가 있다.
+	 로그인 SQL 에서는 그렇게 세션에 입력해야 할 정보를 입력해야 한다. -->
+	 <select id="login" parameterType = "membervo" resultType = "membervo">
+	 	SELECT MEMBER_ID AS id, EMAIL, NAME, PHONE, MEM_TYPE AS memType
+	 	FROM MEMBERS
+	 	WHERE MEMBER_ID = #{id}
+	 	AND PW = #{pw}
+	 </select>
+
+	<select id="idDuplicateCheck" parameterType = "String">
+		SELECT COUNT(*)
+		FROM MEMBERS
+		WHERE MEMBER_ID = #{_parameter}
+	</select>
+
+	<update id="updateMember" parameterType="membervo">
+    UPDATE MEMBERS
+    SET
+            PW = #{pw},
+            POST_CODE = #{postcode},
+            ADDRESS = #{address},
+            DETAIL_ADDRESS = #{detailAddress}
+    WHERE MEMBER_ID = #{id}
+</update>
+
+	<select id="checkMemberByIdAndEmail" parameterType="membervo" resultType="java.lang.Integer">
+   		SELECT COUNT(*)
+    	FROM   MEMBERS
+    	WHERE  MEMBER_ID = #{id}
+      		   AND EMAIL = #{email}
+	</select>
+
+
+	<update id="updateFamilyCdForParent" parameterType="membervo">
+   		UPDATE MEMBERS AS M1
+    	JOIN MEMBERS AS M2 ON M2.MEMBER_ID = #{childId}
+    	SET M1.FAMILY_CD = CASE
+        	WHEN M1.FAMILY_CD IS NULL AND M2.FAMILY_CD IS NULL THEN UUID()
+        	WHEN M1.FAMILY_CD IS NULL AND M2.FAMILY_CD IS NOT NULL THEN M2.FAMILY_CD
+        	ELSE M1.FAMILY_CD
+    	END
+   		WHERE M1.MEMBER_ID = #{id}
+		</update>
+
+		<update id="updateFamilyCdForChild" parameterType="membervo">
+    	UPDATE MEMBERS AS M1
+    	JOIN MEMBERS AS M2 ON M2.MEMBER_ID = #{id}
+    	SET M1.FAMILY_CD = CASE
+        	WHEN M1.FAMILY_CD IS NULL AND M2.FAMILY_CD IS NULL THEN UUID()
+        	WHEN M1.FAMILY_CD IS NULL AND M2.FAMILY_CD IS NOT NULL THEN M2.FAMILY_CD
+        	ELSE M1.FAMILY_CD
+    	END
+    	WHERE M1.MEMBER_ID = #{childId}
+		</update>
+	
+	<delete id="signOut" parameterType = "membervo">
+		DELETE FROM MEMBERS
+		WHERE MEMBER_ID = #{id} 
+		AND PW = #{pw}
+	</delete>
+	
+	<select id="findMember" parameterType = "membervo"> 
+	 	SELECT *
+	 	FROM MEMBERS
+	 	WHERE MEMBER_ID = #{id}
+	</select>
+	
+	<update id="updatePw" parameterType="com.safevoice.model.MemberVO">
+  UPDATE MEMBERS
+    SET PW = #{pw}
+  WHERE MEMBER_ID = #{id}
+</update>
+
+	
+	<update id="disconnectChild" parameterType="string">
+    	UPDATE MEMBERS
+    	SET FAMILY_CD = NULL
+    	WHERE MEMBER_ID = #{childId}
+	</update>
+	
+	<select id="selectMyChildren" parameterType="string" resultType="membervo">
+    	SELECT MEMBER_ID AS id, NAME, EMAIL, FAMILY_CD, MEM_TYPE
+    	FROM MEMBERS
+    	WHERE FAMILY_CD = (
+        		SELECT FAMILY_CD FROM MEMBERS WHERE MEMBER_ID = #{id}
+    			)
+    			AND MEM_TYPE = 'C'
+	</select>
+	
+
+	<select id="getChildNameById" parameterType="string">
+		SELECT NAME
+		FROM MEMBERS
+		WHERE MEMBER_ID = #{id}
+	</select>
+	
+	<update id="saveSubscription" parameterType="membervo">
+    	UPDATE MEMBERS
+    	SET SUBSCRIPTION_JSON = #{jsonSubscription}
+    	WHERE MEMBER_ID = #{id}
+	</update>
+	
+</mapper>

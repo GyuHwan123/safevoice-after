@@ -1,0 +1,11 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=branch 'main' of https\://github.com/2025-SMHRD-IS-CLOUD-2/SafeVoice.git
+eclipse.preferences.version=1
+encoding//src/main/java=UTF-8
+encoding//src/main/java/com/safevoice/db/Mybatis-config.xml=UTF-8
+encoding//src/main/webapp/WEB-INF/FindingPassword.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/MainPageChild.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/ModifyMember.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/SignIn.jsp=UTF-8
+encoding/<project>=UTF-8
