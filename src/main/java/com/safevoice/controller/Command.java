@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 // 모든 POJO의 부모 인터페이스
 public interface Command {
 
+	
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException;
 
 }
