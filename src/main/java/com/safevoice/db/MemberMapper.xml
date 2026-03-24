@@ -112,4 +112,38 @@
     	WHERE MEMBER_ID = #{id}
 	</update>
 	
+	<select id="findBySocial" parameterType="string" resultType="membervo">
+	    SELECT 
+	        MEMBER_ID AS id,
+	        EMAIL,
+	        NAME,
+	        PHONE,
+	        MEM_TYPE AS memType,
+	        GOOGLE
+	    FROM MEMBERS
+	    WHERE EMAIL = #{email}
+	    AND GOOGLE = 1
+	</select>
+	
+	<insert id="insertGoogleMember" parameterType="membervo">
+
+	    INSERT INTO MEMBERS
+	    (
+	        MEMBER_ID,
+	        EMAIL,
+	        NAME,
+	        MEM_TYPE,
+	        GOOGLE
+	    )
+	
+	    VALUES
+	    (
+	        #{id},
+	        #{email},
+	        #{name},
+	        #{memType},
+	        1
+	    )
+	
+	</insert>
 </mapper>

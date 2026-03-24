@@ -60,10 +60,21 @@ public class FrontController extends HttpServlet {
         }
         
         if (view.startsWith("redirect:")) {
-            response.sendRedirect(request.getContextPath() + view.substring(9));
+        	String redirectPath = view.substring(9);
+        	
+        	// 외부 redirect 일 경우에는 contextPath 를 사용하지 않기!
+        	if (redirectPath.startsWith("http")) {
+                response.sendRedirect(redirectPath);
+            // 내부 redicect 일 경우에는 /으로 시작한다.
+            } else {
+                response.sendRedirect(request.getContextPath() + redirectPath);
+            }
+
             return;
         }
-
+        
+        view = view.replace(".do", ".jsp");
+        
         RequestDispatcher rd =
                 request.getRequestDispatcher("/WEB-INF/" + view);
 

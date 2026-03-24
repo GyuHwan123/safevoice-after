@@ -1,2 +1,23 @@
-/build/
+# Maven build
 /target/
+/build/
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables (비밀키 등)
+.env
+.env.*
+
+# config
+config.properties

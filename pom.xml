@@ -24,6 +24,19 @@
 
   <!-- ─── 의존성 선언 ─── -->
   <dependencies>
+  <!-- env 를 읽기 위한 라이브러리 -->
+  <dependency>
+	  <groupId>io.github.cdimascio</groupId>
+	  <artifactId>dotenv-java</artifactId>
+	  <version>3.0.0</version>
+  </dependency>
+  <!-- google 로그인을 위한 코드 json 파싱 -->
+  <dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+  <version>2.10</version>
+  </dependency>
+  
 <dependency>
   <groupId>jakarta.activation</groupId>
   <artifactId>jakarta.activation-api</artifactId>

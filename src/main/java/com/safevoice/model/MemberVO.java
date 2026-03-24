@@ -17,9 +17,10 @@ public class MemberVO {
 	String childId;
 	String imagePath;
 	String jsonSubscription;
+	String google;
 
 	public MemberVO(String email, String id, String pw, String name, String birthDate, String phone, String postcode,
-			String address, String detailAddress, String gender, String familyCode, String memType) {
+			String address, String detailAddress, String gender, String familyCode, String memType, String google) {
 		super();
 		this.email = email;
 		this.id = id;
@@ -33,6 +34,7 @@ public class MemberVO {
 		this.gender = gender;
 		this.familyCode = familyCode;
 		this.memType = memType;
+		this.google = google;
 	}
 	
 	public MemberVO() {
@@ -157,6 +159,14 @@ public class MemberVO {
 
 	public void setJsonSubscription(String jsonSubscription) {
 	    this.jsonSubscription = jsonSubscription;
+	}
+	
+	public String getGoogle() {
+		return google;
+	}
+
+	public void setGoogle(String google) {
+		this.google = google;
 	}
 
 }

@@ -14,6 +14,9 @@ import com.safevoice.controller.Alert.InputFileService;
 import com.safevoice.controller.Alert.SaveSubscriptionService;
 import com.safevoice.controller.Alert.SendSosAlertService;
 import com.safevoice.controller.Member.ChangePasswordService;
+import com.safevoice.controller.Member.GoogleCallbackService;
+import com.safevoice.controller.Member.GoogleLoginService;
+import com.safevoice.controller.Member.GoogleSignupService;
 import com.safevoice.controller.Member.IdDuplicateCheckService;
 import com.safevoice.controller.Member.LoginService;
 import com.safevoice.controller.Member.LogoutService;
@@ -59,7 +62,9 @@ public class CommandRouter {
 	    map.put("MarkAlertsAsRead.do", new MarkAlertsAsRead());
 	    map.put("UpdateMember.do", new UpdateMemberService());
 	    map.put("SendSosAlert.do", new SendSosAlertService()); // SOS 알림
-	    
+	    map.put("GoogleLogin.do", new GoogleLoginService());
+	    map.put("GoogleCallback.do", new GoogleCallbackService());
+	    map.put("GoogleSignup.do", new GoogleSignupService());
 	}
 	
 	public static Command getCommand(String path) {

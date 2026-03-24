@@ -42,7 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let alertData = [];
 
-  fetch('/SafeVoice/GetAlertHistory.do')
+  fetch('/SafeVoice/GetAlertHistory.do',{
+	credentials: 'include'
+  })
     .then(res => res.json())
     .then(data => {
       console.log(data);
@@ -76,7 +78,8 @@ document.addEventListener("DOMContentLoaded", function () {
     //localStorage.setItem('alertChecked', 'true');
 	
 	fetch('/SafeVoice/MarkAlertsAsRead.do', {
-	  method: 'POST'
+	  method: 'POST',
+	  credentials: 'include'
 	})
 	.then(res => {
 	  if (!res.ok) throw new Error('서버 응답 오류');

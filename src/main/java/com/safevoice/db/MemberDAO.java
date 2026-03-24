@@ -124,11 +124,26 @@ public class MemberDAO {
 		return name;
 	}
 	// 회원 구독 정보 저장 (SubscriptionJson)
-		public int saveSubscription(MemberVO member) {
-			SqlSession sqlsession = factory.openSession(true);
-			int row = sqlsession.update("saveSubscription", member); // UPDATE 쿼리 사용!
-			sqlsession.close();
-			return row;
+	public int saveSubscription(MemberVO member) {
+		SqlSession sqlsession = factory.openSession(true);
+		int row = sqlsession.update("saveSubscription", member); // UPDATE 쿼리 사용!
+		sqlsession.close();
+		return row;
 	}
+	// 소셜 회원 찾기
+	public MemberVO findBySocial(String email) {
+		SqlSession sqlsession = factory.openSession(true);
+	    MemberVO vo = sqlsession.selectOne("findBySocial", email);
+	    sqlsession.close();
+	    return vo;
+	}
+	public int insertGoogleMember(MemberVO vo) {
+	    SqlSession session = factory.openSession(true);
+	    int cnt = session.insert("insertGoogleMember", vo);
+	    session.commit();
+	    session.close();
+	    return cnt;
+	}
+		
 
 }
